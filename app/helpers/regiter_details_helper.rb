@@ -1,0 +1,2 @@
+module RegiterDetailsHelper
+end
