@@ -1,21 +1,20 @@
 <p style="color: green"><%= notice %></p>
-
-<main class="container">
-  <h1>Posts</h1>
-  <%= turbo_frame_tag "posts_frame" do %>
-
-    <%= turbo_frame_tag "first_turbo_frame" do %>
-      <div class="header">
-        <%= link_to "New post",
-                    new_post_path,
-                    class: "btn btn--primary" %>
-      </div>
-    <% end %>
-
-    <%= turbo_frame_tag "second_frame" do %>
-      <%= render @posts %>
-    <% end %>
+<div class="container">
+  <div class="header">
+    <h1 class="text-center">Posts</h1>
+    <%= link_to "New post",
+                new_post_path,
+                class: "btn btn-success",
+                data: { turbo_frame: dom_id(Post.new) } %>
+  </div>
   
-  <% end %>
+  <br>
+  
+  <%= turbo_frame_tag Post.new %>
 
-</main>
+  <%# turbo_stream_from "posts" %>
+  
+  <%= turbo_frame_tag "posts" do %>
+    <%= render @posts %>
+  <% end %>
+</div>
