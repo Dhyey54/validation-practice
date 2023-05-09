@@ -12,7 +12,12 @@
       <p>Likes:<%= post.likes.count %></p>
       <%= link_to 'Like', like_post_path(post), class: 'btn' %>
       <%= link_to 'Dislike', dislike_post_path(post), data: { turbo_method: :delete },  class: 'btn' %>
-    
+      <%= link_to 'Comments', post_comments_path(post), data: { turbo_frame: "comments" },  class: 'btn' %>
+      
+      <div>
+        <%= turbo_frame_tag "comments" %>
+      </div>
+
     </div>
     <div class="post__actions">
       <%= link_to "Delete",
