@@ -1,6 +1,16 @@
-<%= turbo_frame_tag "comments" do%>
-  <% @comments.each do |comment| %>
-    <p>Comments: <%= comment.content %></p>
-    <p>Commented By: <%= comment.user.name %></p>
-  <% end %> 
+<%= turbo_frame_tag "comments_section" do %>
+  <div class="ps-5">
+    <div class="header">
+      <%= link_to "New Comment",
+                  new_post_comment_path,
+                  class: "btn btn-success my-3",
+                  data: { turbo_frame: dom_id(Comment.new) } %>
+    </div>
+
+    <%= turbo_frame_tag Comment.new %>
+    
+    <%= turbo_frame_tag "comments" do %>
+      <%= render @comments %>
+    <% end %>
+  </div>
 <% end %>

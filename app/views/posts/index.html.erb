@@ -5,11 +5,12 @@
     <%= link_to "New post",
                 new_post_path,
                 class: "btn btn-success",
-                data: { turbo_frame: dom_id(Post.new) } %>
+                data: { turbo_frame: dom_id(Post.new), action: "click->hello#greet" } %>
   </div>
-  
+  <div data-controller="greet hello">
+    <button data-action="click->greet#created">Greet</button>
+  </div>
   <br>
-  
   <%= turbo_frame_tag Post.new %>
   
   <%= turbo_frame_tag "posts" do %>
